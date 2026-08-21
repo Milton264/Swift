@@ -17,7 +17,7 @@ struct SettingsView: View {
                     HStack(spacing: 13) {
                         ZStack {
                             Circle().fill(Color.campusPurple.opacity(0.13)).frame(width: 52, height: 52)
-                            Image(systemName: "person.fill").foregroundStyle(.campusPurple)
+                            Image(systemName: "person.fill").foregroundStyle(Color.campusPurple)
                         }
                         VStack(alignment: .leading, spacing: 3) {
                             Text(appState.currentUser?.fullName ?? "Estudiante").font(.headline)

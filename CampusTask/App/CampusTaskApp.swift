@@ -113,7 +113,7 @@ struct MainTabView: View {
             SettingsView()
                 .tabItem { Label("Ajustes", systemImage: "gearshape.fill") }
         }
-        .tint(.campusPurple)
+        .tint(Color.campusPurple)
         .safeAreaInset(edge: .top, spacing: 0) {
             if !network.isConnected {
                 OfflineBanner()

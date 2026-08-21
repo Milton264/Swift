@@ -167,7 +167,7 @@ struct TaskDetailView: View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: "externaldrive.fill.badge.checkmark")
                 .font(.title2)
-                .foregroundStyle(.campusPurple)
+                .foregroundStyle(Color.campusPurple)
             VStack(alignment: .leading, spacing: 4) {
                 Text("Guardada con SwiftData").font(.subheadline.bold())
                 Text("Podés consultar y modificar esta actividad aunque el iPhone no tenga internet.")

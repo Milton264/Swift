@@ -53,7 +53,7 @@ struct DashboardView: View {
                 Circle().fill(Color.campusPurple.opacity(0.13)).frame(width: 52, height: 52)
                 Text(initials)
                     .font(.headline.bold())
-                    .foregroundStyle(.campusPurple)
+                    .foregroundStyle(Color.campusPurple)
             }
             VStack(alignment: .leading, spacing: 3) {
                 Text("Hola, \(firstName)")
@@ -64,7 +64,7 @@ struct DashboardView: View {
             }
             Spacer()
             Image(systemName: "bell.fill")
-                .foregroundStyle(.campusPurple)
+                .foregroundStyle(Color.campusPurple)
                 .padding(11)
                 .background(Color.campusPurple.opacity(0.1), in: Circle())
         }
@@ -112,7 +112,7 @@ struct DashboardView: View {
         HStack(alignment: .center, spacing: 12) {
             Image(systemName: "person.3.fill")
                 .font(.headline)
-                .foregroundStyle(.campusPurple)
+                .foregroundStyle(Color.campusPurple)
                 .frame(width: 40, height: 40)
                 .background(Color.campusPurple.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
             VStack(alignment: .leading, spacing: 3) {
@@ -179,7 +179,7 @@ struct DashboardView: View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: "bolt.horizontal.circle.fill")
                 .font(.title3)
-                .foregroundStyle(.campusPurple)
+                .foregroundStyle(Color.campusPurple)
             VStack(alignment: .leading, spacing: 3) {
                 Text("Concurrencia activa").font(.subheadline.bold())
                 Text("El perfil, las tareas y las materias se cargaron al mismo tiempo usando async let.")

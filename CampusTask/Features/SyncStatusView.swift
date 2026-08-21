@@ -53,7 +53,7 @@ struct SyncStatusView: View {
                 }
                 Spacer()
                 if appState.isSyncing {
-                    ProgressView().tint(.campusPurple)
+                    ProgressView().tint(Color.campusPurple)
                 } else {
                     Image(systemName: pending.isEmpty ? "checkmark.circle.fill" : "clock.badge.exclamationmark.fill")
                         .font(.title2)
@@ -90,7 +90,7 @@ struct SyncStatusView: View {
         VStack(spacing: 12) {
             Image(systemName: "checkmark.icloud.fill")
                 .font(.system(size: 42))
-                .foregroundStyle(.campusTeal)
+                .foregroundStyle(Color.campusTeal)
             Text("Todo está sincronizado").font(.headline)
             Text("Desactivá el internet, modificá una tarea y volvé aquí para crear un cambio pendiente.")
                 .font(.caption)
@@ -107,7 +107,7 @@ struct SyncStatusView: View {
             ForEach(pending, id: \.id) { change in
                 HStack(spacing: 12) {
                     Image(systemName: change.kind == .create ? "plus.circle.fill" : "checkmark.circle.fill")
-                        .foregroundStyle(.campusOrange)
+                        .foregroundStyle(Color.campusOrange)
                     VStack(alignment: .leading, spacing: 3) {
                         Text(change.kind == .create ? "Crear actividad" : "Cambiar estado")
                             .font(.subheadline.bold())

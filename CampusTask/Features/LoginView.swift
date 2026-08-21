@@ -41,7 +41,7 @@ struct LoginView: View {
             }
             Text("CampusTask")
                 .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundStyle(.campusInk)
+                .foregroundStyle(Color.campusInk)
             Text("Organizá tus actividades desde cualquier lugar")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -66,7 +66,7 @@ struct LoginView: View {
                         .autocorrectionDisabled()
                 } icon: {
                     Image(systemName: "person")
-                        .foregroundStyle(.campusPurple)
+                        .foregroundStyle(Color.campusPurple)
                 }
                 .padding(13)
                 .background(Color.primary.opacity(0.05), in: RoundedRectangle(cornerRadius: 13))
@@ -76,7 +76,7 @@ struct LoginView: View {
                 Text("Contraseña").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                 HStack {
                     Image(systemName: "lock")
-                        .foregroundStyle(.campusPurple)
+                        .foregroundStyle(Color.campusPurple)
                     Group {
                         if showPassword {
                             TextField("Contraseña", text: $password)
@@ -113,7 +113,7 @@ struct LoginView: View {
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity)
             }
-            .foregroundStyle(.campusPurple)
+            .foregroundStyle(Color.campusPurple)
         }
         .campusCard()
         .shadow(color: .campusPurple.opacity(0.12), radius: 30, y: 14)
@@ -121,7 +121,7 @@ struct LoginView: View {
 
     private var demoNote: some View {
         HStack(alignment: .top, spacing: 11) {
-            Image(systemName: "key.fill").foregroundStyle(.campusTeal)
+            Image(systemName: "key.fill").foregroundStyle(Color.campusTeal)
             Text("El token recibido se guarda en Keychain. El usuario y la contraseña visibles pertenecen únicamente a la API pública de prueba.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
