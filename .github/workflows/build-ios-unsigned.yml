@@ -1,0 +1,74 @@
+name: Generar IPA de CampusTask sin firma
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-ios:
+    name: Compilar CampusTask para iPhone
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      - name: Descargar el proyecto
+        uses: actions/checkout@v4
+
+      - name: Instalar XcodeGen
+        run: brew install xcodegen
+
+      - name: Generar proyecto de Xcode
+        run: xcodegen generate
+
+      - name: Mostrar entorno de compilación
+        run: |
+          xcodebuild -version
+          xcodegen --version
+
+      - name: Compilar para iPhone sin firma
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project CampusTask.xcodeproj \
+            -scheme CampusTask \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY='' \
+            clean build | tee build-ios.log
+
+      - name: Empaquetar la aplicación como IPA
+        shell: bash
+        run: |
+          APP_PATH=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name '*.app' -print -quit)
+          test -n "$APP_PATH"
+          rm -rf Payload
+          mkdir Payload
+          cp -R "$APP_PATH" Payload/
+          ditto -c -k --sequesterRsrc --keepParent Payload CampusTask-unsigned.ipa
+          test -s CampusTask-unsigned.ipa
+
+      - name: Subir IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: CampusTask-iPhone-sin-firma
+          path: CampusTask-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Subir registro de compilación
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Registro-compilacion-CampusTask
+          path: build-ios.log
+          if-no-files-found: warn
+          retention-days: 7
